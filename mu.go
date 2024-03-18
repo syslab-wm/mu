@@ -25,6 +25,11 @@ func Panicf(format string, a ...any) {
 	panic(msg)
 }
 
+// BUG simply invoked [Panicf], but prepends the message with "bug: "
+func BUG(format string, a ...any) {
+	Panicf("bug: "+format, a...)
+}
+
 // UNUSED is a noop function that is primarily used during development to
 // silence build errors of the form "variable x declared and not used."
 // UNUSED takes a variable number of arguments, and thus may silence such
@@ -38,3 +43,12 @@ func Panicf(format string, a ...any) {
 //	}
 //	mu.UNUSED(a, b)
 func UNUSED(v ...any) {}
+
+// BoolToInt converts a bool to int.  It returns 1 if b is true and 0 if b is
+// false.
+func BoolToInt(b bool) int {
+	if b {
+		return 1
+	}
+	return 0
+}
